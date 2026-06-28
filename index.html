@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GauMitra - Smart Digital Platform for Gaushala & Cow Care</title>
-  <meta name="description" content="GauMitra is a smart digital platform powered by NKC Edu Trust for Gaushala management, cow care, animal records, donation transparency, mobile app support and sustainability." />
-  <meta name="keywords" content="GauMitra, Gaushala management software, cow care software, Gau seva platform, cow adoption platform, donation management for Gaushala, NKC Edu Trust" />
-  <meta property="og:title" content="GauMitra - Smart Digital Platform for Gaushala & Cow Care" />
-  <meta property="og:description" content="Manage Gaushala operations, animal health, feeding, rescue, donations, staff, reports and public transparency from one secure digital platform." />
+  <title>GauMitra - Working Gaushala Management Platform</title>
+  <meta name="description" content="GauMitra is a working browser-based platform for Gaushala registration, animal records, health, feeding, donations, rescue, staff, reports and public transparency." />
+  <meta name="keywords" content="GauMitra, Gaushala registration, cow care software, animal records, donation management, NKC Edu Trust" />
+  <meta property="og:title" content="GauMitra - Working Gaushala Management Platform" />
+  <meta property="og:description" content="Working no-server Gaushala management system with registration, records, reports, CSV export and print support." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://gaumitra.world" />
   <link rel="icon" type="image/jpeg" href="logo.jpeg" />
@@ -26,12 +26,12 @@
       <button class="mobile-menu" type="button" aria-label="Open menu">☰</button>
       <nav class="main-nav" aria-label="Main navigation">
         <a href="#about">About</a>
-        <a href="#features">Features</a>
+        <a href="#features">Modules</a>
+        <a href="#registration">Registration</a>
+        <a href="#records">Records</a>
+        <a href="#reports">Reports</a>
         <a href="#donate">Donate</a>
-        <a href="#mobile">Mobile App</a>
-        <a href="#portal">Public Portal</a>
-        <a href="#contact">Contact</a>
-        <a class="nav-cta" href="#contact">Request Demo</a>
+        <a class="nav-cta" href="#registration">Start Registration</a>
       </nav>
     </div>
   </header>
@@ -41,31 +41,31 @@
       <div class="hero-bg"></div>
       <div class="container hero-grid">
         <div class="hero-content">
-          <p class="badge">★ Powered by NKC Edu Trust</p>
-          <h1>GauMitra<br><span>Smart Digital Platform</span><br>for Gaushala & Cow Care</h1>
-          <p class="hero-text">Manage Gaushala operations, animal health, feeding, rescue, donations, staff, reports and public transparency from one secure digital platform.</p>
+          <p class="badge">Working No-Server Version • Browser Data Save</p>
+          <h1>GauMitra<br><span>Working Gaushala Management</span><br>Platform</h1>
+          <p class="hero-text">A browser-based working system for Gaushala registration, animal records, health, feeding, rescue, donation, staff, reports, CSV export and print-ready summaries.</p>
           <div class="hero-actions">
-            <a class="btn primary" href="#contact">Request Demo</a>
-            <a class="btn orange" href="#donate">Donate Now</a>
-            <a class="btn outline" href="#donate">Sponsor a Cow</a>
+            <a class="btn primary" href="#registration">Open Registration</a>
+            <a class="btn orange" href="#features">Open Modules</a>
+            <a class="btn outline" href="#records">View Records</a>
           </div>
         </div>
         <div class="hero-card">
           <img src="logo.jpeg" alt="GauMitra symbol" />
-          <h2>Digital Gaushala Management</h2>
-          <p>Animal records • Health • Donations • Rescue • Reports • Transparency</p>
+          <h2>Data saved in this browser</h2>
+          <p>No VPS required • Forms work • Records list • Edit/Delete • CSV Export • Print</p>
         </div>
       </div>
     </section>
 
-    <section class="trust-strip" aria-label="Trust badges">
+    <section class="trust-strip">
       <div class="container trust-grid">
-        <span>Secure Platform</span>
-        <span>Digital Animal Records</span>
-        <span>Donation Transparency</span>
-        <span>Multi-Branch Ready</span>
-        <span>Mobile App Support</span>
-        <span>Future AI Ready</span>
+        <span>Gaushala Registration</span>
+        <span>Animal Records</span>
+        <span>Health Logs</span>
+        <span>Donation Records</span>
+        <span>Rescue Workflow</span>
+        <span>Reports Export</span>
       </div>
     </section>
 
@@ -73,11 +73,11 @@
       <div class="container two-col">
         <div>
           <p class="section-kicker">About GauMitra</p>
-          <h2>A future-ready platform for Gaushalas, NGOs, Trusts and cow care organizations.</h2>
+          <h2>A practical working system for daily Gaushala operations.</h2>
         </div>
         <div>
-          <p>GauMitra helps manage animal records, health care, feeding, milk tracking, rescue operations, donations, sponsorships, staff, volunteers, documents, reports, alerts and multi-branch operations.</p>
-          <p>The platform is designed to improve transparency, accountability, donor trust and daily operational efficiency for Indian Gaushalas and cow care organizations.</p>
+          <p>This version works without a VPS/server. It saves records in the user's browser using local storage and supports registration, forms, search, edit, delete, CSV export and print reports.</p>
+          <p>For central cloud database, multi-user login and real admin approval across devices, a server/serverless backend will be required later.</p>
         </div>
       </div>
     </section>
@@ -86,27 +86,72 @@
       <div class="container">
         <div class="section-head centered">
           <p class="section-kicker">23 Working Modules</p>
-          <h2>Click any feature to view real module details</h2>
-          <p>Every card below is clickable and opens a detailed feature explanation.</p>
+          <h2>Click a module to open its working form</h2>
+          <p>Each module has a real input form and saves data in this browser.</p>
         </div>
         <div class="features-grid" id="featuresGrid"></div>
       </div>
     </section>
 
-    <section class="section profile-section" id="profile">
-      <div class="container two-col">
-        <div>
-          <p class="section-kicker">Digital Profile Framework</p>
-          <h2>Public Gaushala profile for transparency and trust.</h2>
-          <p>Create a structured digital profile for each Gaushala with location, registration, capacity, infrastructure, staff, veterinary network, finance, sustainability indicators and public transparency details.</p>
+    <section class="section app-section" id="registration">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-kicker">Working Registration</p>
+          <h2 id="activeModuleTitle">Gaushala Registration</h2>
+          <p id="activeModuleDesc">Fill this form and save a registration record in this browser.</p>
         </div>
-        <div class="info-list">
-          <div>Gaushala name, location and geo-coordinates</div>
-          <div>Trust/organization details and certificates</div>
-          <div>Animal strength, shed capacity and land area</div>
-          <div>Fodder storage, water, hospital and cremation facility</div>
-          <div>Staff, veterinary network and sustainability indicators</div>
+
+        <div class="app-layout">
+          <aside class="module-sidebar">
+            <h3>Modules</h3>
+            <div id="moduleList" class="module-list"></div>
+          </aside>
+
+          <section class="form-card">
+            <div class="form-actions top-actions">
+              <button class="btn small outline-dark" type="button" id="fillSampleBtn">Fill Sample</button>
+              <button class="btn small outline-dark" type="button" id="clearFormBtn">Clear Form</button>
+            </div>
+            <form id="dynamicForm"></form>
+          </section>
         </div>
+      </div>
+    </section>
+
+    <section class="section records-section" id="records">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-kicker">Saved Records</p>
+          <h2>View, search, edit, delete, export and print records</h2>
+          <p>Records are saved in browser local storage. Export CSV regularly for backup.</p>
+        </div>
+
+        <div class="record-tools">
+          <select id="recordModuleFilter" aria-label="Filter records by module"></select>
+          <input id="recordSearch" type="search" placeholder="Search records..." />
+          <button class="btn small primary" id="exportCsvBtn" type="button">Export CSV</button>
+          <button class="btn small outline-dark" id="printRecordsBtn" type="button">Print</button>
+          <button class="btn small danger" id="clearRecordsBtn" type="button">Clear Current Module</button>
+        </div>
+
+        <div class="summary-grid" id="summaryGrid"></div>
+        <div class="table-wrap">
+          <table class="records-table">
+            <thead id="recordsHead"></thead>
+            <tbody id="recordsBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reports-section" id="reports">
+      <div class="container">
+        <div class="section-head centered">
+          <p class="section-kicker">Reports</p>
+          <h2>Instant browser reports</h2>
+          <p>Auto counts and latest records from each module.</p>
+        </div>
+        <div class="report-grid" id="reportGrid"></div>
       </div>
     </section>
 
@@ -114,7 +159,7 @@
       <div class="container donation-grid">
         <div>
           <p class="section-kicker">Donation & Sponsorship</p>
-          <h2>Donate to support GauMitra and Gaushala care.</h2>
+          <h2>Support GauMitra and Gaushala care.</h2>
           <p>Your contribution helps support cow care, feeding, rescue, health treatment, sustainability and public transparency initiatives powered by NKC Edu Trust.</p>
           <div class="donation-actions">
             <a class="btn primary" href="tel:+918369912434">Call for Donation</a>
@@ -130,46 +175,7 @@
             <div><dt>IFSC Code</dt><dd>YESB0000363</dd></div>
             <div><dt>Branch Address</dt><dd>Adalaj, Ahmedabad, Gujarat</dd></div>
           </dl>
-          <p class="small-note">After donation, please share your transaction details on WhatsApp or email for confirmation and receipt support.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="mobile">
-      <div class="container two-col reverse">
-        <div class="phone-mockup" aria-label="Mobile app visual">
-          <div class="phone-screen">
-            <img src="logo.jpeg" alt="GauMitra app logo" />
-            <h3>GauMitra App</h3>
-            <p>Field operations, alerts and records on mobile.</p>
-            <ul>
-              <li>Animal record entry</li>
-              <li>Rescue updates</li>
-              <li>Health alerts</li>
-              <li>Offline-friendly logs</li>
-            </ul>
-          </div>
-        </div>
-        <div>
-          <p class="section-kicker">Mobile App Support</p>
-          <h2>For staff, volunteers, doctors and administrators.</h2>
-          <p>GauMitra supports mobile-friendly Gaushala operations including animal entries, rescue updates, health alerts, feeding logs, stock updates, offline-friendly data entry and mobile notifications.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section portal-section" id="portal">
-      <div class="container two-col">
-        <div>
-          <p class="section-kicker">Public Portal</p>
-          <h2>Build public trust with transparent digital records.</h2>
-          <p>The public portal helps show donations, sponsorships, cow adoption, Gaushala profiles, reports, activities, events, virtual tours and community engagement.</p>
-        </div>
-        <div class="portal-cards">
-          <span>Donation Transparency</span>
-          <span>Sponsor a Cow</span>
-          <span>Adoption Updates</span>
-          <span>Reports & Activities</span>
+          <p class="small-note">After donation, please share transaction details on WhatsApp or email for confirmation and receipt support.</p>
         </div>
       </div>
     </section>
@@ -179,7 +185,6 @@
         <div>
           <p class="section-kicker">Contact Us</p>
           <h2>Request a demo or connect with NKC Edu Trust.</h2>
-          <p>For demo, donations, sponsorships, partnerships and platform enquiries, contact GauMitra.</p>
           <div class="contact-links">
             <a href="tel:+918369912434">📞 +91 8369912434</a>
             <a href="mailto:info@nkctrust.org">✉ info@nkctrust.org</a>
@@ -206,22 +211,12 @@
           <span>Powered by NKC Edu Trust</span>
         </div>
       </div>
-      <p>Smart Digital Platform for Gaushala Management, Cow Care and Public Transparency.</p>
+      <p>Working no-server platform. Data is stored in this browser. Export CSV for backup.</p>
       <a class="back-top" href="#top">Back to top ↑</a>
     </div>
   </footer>
 
-  <div class="modal" id="featureModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-backdrop" data-close="modal"></div>
-    <div class="modal-panel">
-      <button class="modal-close" type="button" data-close="modal" aria-label="Close feature details">×</button>
-      <p class="section-kicker" id="modalNumber"></p>
-      <h2 id="modalTitle"></h2>
-      <p id="modalDescription"></p>
-      <ul id="modalPoints"></ul>
-    </div>
-  </div>
-
+  <div class="toast" id="toast"></div>
   <script src="script.js"></script>
 </body>
 </html>
