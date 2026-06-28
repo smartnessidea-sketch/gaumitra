@@ -62,7 +62,7 @@ function renderFeatureCards(){
   $("featuresGrid").innerHTML = modules.map((m,i)=>`
     <button class="feature-card" type="button" data-open-module="${m.id}">
       <span class="num">${String(i+1).padStart(2,"0")}</span>
-      <strong>${m.name}</strong>
+      <strong>${gmT(m.name)}</strong>
       
       
     </button>`).join("");
@@ -75,7 +75,7 @@ function renderFeatureCards(){
 function renderModuleList(){
   $("moduleList").innerHTML = modules.map((m,i)=>`
     <button class="module-btn ${m.id===activeModuleId?"active":""}" type="button" data-module="${m.id}">
-      ${i+1}. ${m.name}
+      ${i+1}. ${gmT(m.name)}
     </button>`).join("");
   document.querySelectorAll("[data-module]").forEach(btn=>btn.addEventListener("click",()=>selectModule(btn.dataset.module)));
 }
@@ -88,7 +88,7 @@ function selectModule(id){
 
 function renderForm(){
   const m = getModule(activeModuleId);
-  $("activeModuleTitle").textContent = editRecordId ? `Edit ${m.name}` : m.name;
+  $("activeModuleTitle").textContent = editRecordId ? gmT("Edit")+" "+gmT(m.name) : gmT(m.name);
   $("activeModuleDesc").textContent = m.desc;
   const current = editRecordId ? loadRecords().find(r=>r.id===editRecordId) : null;
   const values = current?.data || {};
@@ -98,11 +98,11 @@ function renderForm(){
     const isLong = /address|notes|message|summary|recommendation/i.test(field);
     const type = /date/i.test(field) ? "date" : /amount|cost|price|quantity|stock|count|capacity|area|produced|sold|used|balance|score|value/i.test(field) ? "number" : /email/i.test(field) ? "email" : /mobile|phone/i.test(field) ? "tel" : "text";
     if(isLong){
-      return `<div class="field full"><label>${field}</label><textarea name="${key}" placeholder="${field}">${escapeHtml(val)}</textarea></div>`;
+      return `<div class="field full"><label>${gmT(field)}</label><textarea name="${key}" placeholder="${gmT(field)}">${escapeHtml(val)}</textarea></div>`;
     }
-    return `<div class="field"><label>${field}</label><input name="${key}" type="${type}" value="${escapeAttr(val)}" placeholder="${field}" ${idx<2?"required":""}></div>`;
+    return `<div class="field"><label>${gmT(field)}</label><input name="${key}" type="${type}" value="${escapeAttr(val)}" placeholder="${gmT(field)}" ${idx<2?"required":""}></div>`;
   }).join("");
-  $("dynamicForm").innerHTML = `<div class="form-grid">${fieldsHtml}</div><div class="form-actions"><button class="btn primary" type="submit">${editRecordId?"Update Record":"Save Record"}</button><a class="btn outline-dark" href="#records">View Records</a></div>`;
+  $("dynamicForm").innerHTML = '<div class="form-grid">'+fieldsHtml+'</div><div class="form-actions"><button class="btn primary" type="submit">'+(editRecordId?gmT("Update Record"):gmT("Save Record"))+'</button><a class="btn outline-dark" href="#records">'+gmT("View Records")+'</a></div>';
   $("dynamicForm").onsubmit = handleSubmit;
 }
 
@@ -128,7 +128,7 @@ function handleSubmit(e){
 }
 
 function renderFilterOptions(){
-  $("recordModuleFilter").innerHTML = modules.map(m=>`<option value="${m.id}">${m.name}</option>`).join("");
+  $("recordModuleFilter").innerHTML = modules.map(m=>`<option value="${m.id}">${gmT(m.name)}</option>`).join("");
   $("recordModuleFilter").value=activeModuleId;
 }
 
@@ -168,7 +168,7 @@ function renderReports(){
   $("reportGrid").innerHTML = modules.map(m=>{
     const count = all.filter(r=>r.moduleId===m.id).length;
     const latest = all.find(r=>r.moduleId===m.id);
-    return `<div class="report-card"><strong>${count}</strong><span>${m.name}</span><p>${latest ? "Latest: "+formatDate(latest.createdAt) : "No record yet"}</p></div>`;
+    return `<div class="report-card"><strong>${count}</strong><span>${gmT(m.name)}</span><p>${latest ? "Latest: "+formatDate(latest.createdAt) : "No record yet"}</p></div>`;
   }).join("");
 }
 
@@ -192,7 +192,7 @@ window.deleteRecord = function(id){
 
 function clearCurrentModule(){
   const m = getModule(activeModuleId);
-  if(!confirm(`Delete all records from ${m.name}?`)) return;
+  if(!confirm(`Delete all records from ${gmT(m.name)}?`)) return;
   saveRecords(loadRecords().filter(r=>r.moduleId!==activeModuleId));
   toast("Current module records cleared");
   renderRecords(); renderReports();
@@ -222,7 +222,7 @@ function fillSample(){
     else if(el.type === "number") el.value = String((i+1)*10);
     else if(/mobile|phone/i.test(field)) el.value = "9876543210";
     else if(/email/i.test(field)) el.value = "info@nkctrust.org";
-    else el.value = `${field} sample`;
+    else el.value = `${gmT(field)} sample`;
   });
 }
 
@@ -234,11 +234,24 @@ function escapeHtml(v){return String(v).replace(/[&<>"']/g, m=>({"&":"&amp;","<"
 function escapeAttr(v){return escapeHtml(v)}
 
 document.addEventListener("DOMContentLoaded", init);
-const gmLangText={"hi": {"Trusted Gaushala Digital Platform": "विश्वसनीय गौशाला डिजिटल प्लेटफॉर्म", "Smart Gaushala": "स्मार्ट गौशाला", "Open Registration": "रजिस्ट्रेशन खोलें", "Open Modules": "मॉड्यूल देखें", "View Records": "रिकॉर्ड देखें", "About": "परिचय", "Modules": "मॉड्यूल", "Registration": "रजिस्ट्रेशन", "Records": "रिकॉर्ड", "Reports": "रिपोर्ट", "Donate": "दान करें", "Start Registration": "रजिस्ट्रेशन शुरू करें", "Gaushala Registration": "गौशाला रजिस्ट्रेशन", "Animal Records": "पशु रिकॉर्ड", "Donation Records": "दान रिकॉर्ड", "Contact GauMitra Team": "गौमित्र टीम से संपर्क करें", "Office Address": "ऑफिस पता"}, "gu": {"Trusted Gaushala Digital Platform": "વિશ્વસનીય ગૌશાળા ડિજિટલ પ્લેટફોર્મ", "Smart Gaushala": "સ્માર્ટ ગૌશાળા", "Open Registration": "રજિસ્ટ્રેશન ખોલો", "Open Modules": "મોડ્યુલ જુઓ", "View Records": "રેકોર્ડ જુઓ", "About": "વિશે", "Modules": "મોડ્યુલ", "Registration": "રજિસ્ટ્રેશન", "Records": "રેકોર્ડ", "Reports": "રિપોર્ટ", "Donate": "દાન કરો", "Start Registration": "રજિસ્ટ્રેશન શરૂ કરો", "Gaushala Registration": "ગૌશાળા રજિસ્ટ્રેશન", "Animal Records": "પશુ રેકોર્ડ", "Donation Records": "દાન રેકોર્ડ", "Contact GauMitra Team": "ગૌમિત્ર ટીમનો સંપર્ક કરો", "Office Address": "ઓફિસ સરનામું"}};
+var gmLangText={"hi": {"Trusted Gaushala Digital Platform": "विश्वसनीय गौशाला डिजिटल प्लेटफॉर्म", "Smart Gaushala": "स्मार्ट गौशाला", "Open Registration": "रजिस्ट्रेशन खोलें", "Open Modules": "मॉड्यूल देखें", "View Records": "रिकॉर्ड देखें", "About": "परिचय", "Modules": "मॉड्यूल", "Registration": "रजिस्ट्रेशन", "Records": "रिकॉर्ड", "Reports": "रिपोर्ट", "Donate": "दान करें", "Start Registration": "रजिस्ट्रेशन शुरू करें", "Gaushala Registration": "गौशाला रजिस्ट्रेशन", "Animal Records": "पशु रिकॉर्ड", "Donation Records": "दान रिकॉर्ड", "Contact GauMitra Team": "गौमित्र टीम से संपर्क करें", "Office Address": "ऑफिस पता"}, "gu": {"Trusted Gaushala Digital Platform": "વિશ્વસનીય ગૌશાળા ડિજિટલ પ્લેટફોર્મ", "Smart Gaushala": "સ્માર્ટ ગૌશાળા", "Open Registration": "રજિસ્ટ્રેશન ખોલો", "Open Modules": "મોડ્યુલ જુઓ", "View Records": "રેકોર્ડ જુઓ", "About": "વિશે", "Modules": "મોડ્યુલ", "Registration": "રજિસ્ટ્રેશન", "Records": "રેકોર્ડ", "Reports": "રિપોર્ટ", "Donate": "દાન કરો", "Start Registration": "રજિસ્ટ્રેશન શરૂ કરો", "Gaushala Registration": "ગૌશાળા રજિસ્ટ્રેશન", "Animal Records": "પશુ રેકોર્ડ", "Donation Records": "દાન રેકોર્ડ", "Contact GauMitra Team": "ગૌમિત્ર ટીમનો સંપર્ક કરો", "Office Address": "ઓફિસ સરનામું"}};
+function gmT(x){var lang=localStorage.getItem('gm_lang')||'en';if(lang==='en'||typeof gmLangText==='undefined')return x;var map=gmLangText[lang]||{};return map[x]||x}
 function gmApplyLanguage(lang){var map=gmLangText[lang]||{};document.querySelectorAll("a,button,h2,h3,p,span,strong,label,dt").forEach(function(el){if(el.children.length)return;var o=el.getAttribute("data-gm-original")||el.textContent.trim();if(!o)return;if(!el.getAttribute("data-gm-original"))el.setAttribute("data-gm-original",o);el.textContent=(lang==="en")?o:(map[o]||o)});try{localStorage.setItem("gm_lang",lang)}catch(e){}}
-document.addEventListener("DOMContentLoaded",function(){var s=document.getElementById("languageSelect");if(!s)return;var saved=localStorage.getItem("gm_lang")||"en";s.value=saved;setTimeout(function(){gmApplyLanguage(saved)},150);s.addEventListener("change",function(){gmApplyLanguage(this.value)})});
+document.addEventListener("DOMContentLoaded",function(){var s=document.getElementById("languageSelect");if(!s)return;var saved=localStorage.getItem("gm_lang")||"en";s.value=saved;setTimeout(function(){gmApplyLanguage(saved);renderFeatureCards();renderModuleList();renderFilterOptions();renderForm();document.getElementById("recordModuleFilter").value=activeModuleId},150);s.addEventListener("change",function(){gmApplyLanguage(this.value);renderFeatureCards();renderModuleList();renderFilterOptions();renderForm();document.getElementById("recordModuleFilter").value=activeModuleId})});
 
 
 Object.assign(gmLangText.hi,{'Health Logs':'स्वास्थ्य रिकॉर्ड','Rescue Workflow':'रेस्क्यू प्रक्रिया','Reports Export':'रिपोर्ट एक्सपोर्ट','Animal Master & Registration':'पशु मास्टर और रजिस्ट्रेशन','Health & Medical Management':'स्वास्थ्य और मेडिकल प्रबंधन','Breeding & Calf Management':'प्रजनन और बछड़ा प्रबंधन','Feeding & Milk Management':'फीडिंग और दूध प्रबंधन','Inventory & Shed Operations':'इन्वेंटरी और शेड संचालन','Rescue & Admission Module':'रेस्क्यू और प्रवेश मॉड्यूल','Staff, Doctors & Volunteers':'स्टाफ, डॉक्टर और स्वयंसेवक'});Object.assign(gmLangText.gu,{'Health Logs':'આરોગ્ય રેકોર્ડ','Rescue Workflow':'રેસ્ક્યુ પ્રક્રિયા','Reports Export':'રિપોર્ટ એક્સપોર્ટ','Animal Master & Registration':'પશુ માસ્ટર અને રજિસ્ટ્રેશન','Health & Medical Management':'આરોગ્ય અને મેડિકલ મેનેજમેન્ટ','Breeding & Calf Management':'પ્રજનન અને વાછરડું મેનેજમેન્ટ','Feeding & Milk Management':'ફીડિંગ અને દૂધ મેનેજમેન્ટ','Inventory & Shed Operations':'ઇન્વેન્ટરી અને શેડ ઓપરેશન','Rescue & Admission Module':'રેસ્ક્યુ અને એડમિશન મોડ્યુલ','Staff, Doctors & Volunteers':'સ્ટાફ, ડોક્ટર અને વોલન્ટિયર'});
 Object.assign(gmLangText.hi,{'Documents & Compliance':'दस्तावेज़ और अनुपालन','Reports, Alerts & Multi-Branch':'रिपोर्ट, अलर्ट और मल्टी-ब्रांच','Security & Mobile Features':'सुरक्षा और मोबाइल फीचर','Cow Economy Management System':'गौ अर्थव्यवस्था प्रबंधन सिस्टम','Advanced Cow Database & Feed Intelligence':'उन्नत गौ डेटाबेस और फीड इंटेलिजेंस','Advanced Health & Workforce Automation':'उन्नत स्वास्थ्य और कार्यबल ऑटोमेशन','Gau Product Revenue Engine':'गौ उत्पाद राजस्व सिस्टम','Cremation / Gau-Kasht Integration':'गौ-काष्ठ इंटीग्रेशन','Cow Adoption Platform':'गौ गोद लेने का प्लेटफॉर्म','Transparency & Live Monitoring':'पारदर्शिता और लाइव मॉनिटरिंग','Web, Mobile & Community Integration':'वेब, मोबाइल और समुदाय इंटीग्रेशन','eCommerce & Marketplace':'ईकॉमर्स और मार्केटप्लेस','Sustainability & Analytics Engine':'सस्टेनेबिलिटी और एनालिटिक्स इंजन'});Object.assign(gmLangText.gu,{'Documents & Compliance':'દસ્તાવેજો અને અનુપાલન','Reports, Alerts & Multi-Branch':'રિપોર્ટ, એલર્ટ અને મલ્ટી-બ્રાંચ','Security & Mobile Features':'સિક્યુરિટી અને મોબાઇલ ફીચર્સ','Cow Economy Management System':'ગૌ અર્થતંત્ર મેનેજમેન્ટ સિસ્ટમ','Advanced Cow Database & Feed Intelligence':'અદ્યતન ગૌ ડેટાબેઝ અને ફીડ ઇન્ટેલિજન્સ','Advanced Health & Workforce Automation':'અદ્યતન આરોગ્ય અને વર્કફોર્સ ઓટોમેશન','Gau Product Revenue Engine':'ગૌ પ્રોડક્ટ રેવન્યુ સિસ્ટમ','Cremation / Gau-Kasht Integration':'ગૌ-કાષ્ઠ ઇન્ટિગ્રેશન','Cow Adoption Platform':'ગૌ દત્તક પ્લેટફોર્મ','Transparency & Live Monitoring':'પારદર્શિતા અને લાઇવ મોનિટરિંગ','Web, Mobile & Community Integration':'વેબ, મોબાઇલ અને સમુદાય ઇન્ટિગ્રેશન','eCommerce & Marketplace':'ઇકોમર્સ અને માર્કેટપ્લેસ','Sustainability & Analytics Engine':'સસ્ટેનેબિલિટી અને એનાલિટિક્સ એન્જિન'});
+
+
+
+
+
+
+
+
+
+
+
+
 
