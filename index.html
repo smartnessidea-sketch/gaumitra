@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GauMitra - Working Gaushala Management Platform</title>
-  <meta name="description" content="GauMitra is a working browser-based platform for Gaushala registration, animal records, health, feeding, donations, rescue, staff, reports and public transparency." />
+  <title>GauMitra - Professional Gaushala Management Platform</title>
+  <meta name="description" content="GauMitra is a professional digital platform for Gaushala registration, animal records, health, feeding, donations, rescue, staff, reports and public transparency." />
   <meta name="keywords" content="GauMitra, Gaushala registration, cow care software, animal records, donation management, NKC Edu Trust" />
-  <meta property="og:title" content="GauMitra - Working Gaushala Management Platform" />
-  <meta property="og:description" content="Working no-server Gaushala management system with registration, records, reports, CSV export and print support." />
+  <meta property="og:title" content="GauMitra - Professional Gaushala Management Platform" />
+  <meta property="og:description" content="Professional Gaushala management system with registration, records, reports, CSV export and print support." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://gaumitra.world" />
   <link rel="icon" type="image/jpeg" href="logo.jpeg" />
@@ -23,7 +23,7 @@
           <span>Powered by NKC Edu Trust</span>
         </div>
       </a>
-      <button class="mobile-menu" type="button" aria-label="Open menu">☰</button>
+      <button class="mobile-menu" type="button" aria-label="Open menu">&#9776;</button>
       <nav class="main-nav" aria-label="Main navigation">
         <a href="#about">About</a>
         <a href="#features">Modules</a>
@@ -31,7 +31,7 @@
         <a href="#records">Records</a>
         <a href="#reports">Reports</a>
         <a href="#donate">Donate</a>
-        <a class="nav-cta" href="#registration">Start Registration</a>
+        <select id="languageSelect" class="language-select"><option value="en">English</option><option value="hi">Hindi</option><option value="gu">Gujarati</option></select><a class="nav-cta" href="#registration">Start Registration</a>
       </nav>
     </div>
   </header>
@@ -41,9 +41,9 @@
       <div class="hero-bg"></div>
       <div class="container hero-grid">
         <div class="hero-content">
-          <p class="badge">Working No-Server Version • Browser Data Save</p>
-          <h1>GauMitra<br><span>Working Gaushala Management</span><br>Platform</h1>
-          <p class="hero-text">A browser-based working system for Gaushala registration, animal records, health, feeding, rescue, donation, staff, reports, CSV export and print-ready summaries.</p>
+          <p class="badge">Trusted Gaushala Digital Platform</p>
+          <h1>GauMitra<br><span>Smart Gaushala</span></h1>
+          <p class="hero-text">A professional digital system for Gaushala registration, animal records, health, feeding, rescue, donation, staff, reports, CSV export and print-ready summaries.</p>
           <div class="hero-actions">
             <a class="btn primary" href="#registration">Open Registration</a>
             <a class="btn orange" href="#features">Open Modules</a>
@@ -52,20 +52,19 @@
         </div>
         <div class="hero-card">
           <img src="logo.jpeg" alt="GauMitra symbol" />
-          <h2>Data saved in this browser</h2>
-          <p>No VPS required • Forms work • Records list • Edit/Delete • CSV Export • Print</p>
+          <h2>Integrated Records Dashboard</h2><p>Digital Forms - Record Management - CSV Export - Print Support</p>
         </div>
       </div>
     </section>
 
     <section class="trust-strip">
       <div class="container trust-grid">
-        <span>Gaushala Registration</span>
-        <span>Animal Records</span>
-        <span>Health Logs</span>
-        <span>Donation Records</span>
-        <span>Rescue Workflow</span>
-        <span>Reports Export</span>
+        <a href="#registration">Gaushala Registration</a>
+        <a href="#features">Animal Records</a>
+        <a href="#features">Health Logs</a>
+        <a href="#donate">Donation Records</a>
+        <a href="#features">Rescue Workflow</a>
+        <a href="#reports">Reports Export</a>
       </div>
     </section>
 
@@ -73,11 +72,11 @@
       <div class="container two-col">
         <div>
           <p class="section-kicker">About GauMitra</p>
-          <h2>A practical working system for daily Gaushala operations.</h2>
+          <h2>Empowering modern Gaushala care with smart digital management.</h2>
         </div>
         <div>
-          <p>This version works without a VPS/server. It saves records in the user's browser using local storage and supports registration, forms, search, edit, delete, CSV export and print reports.</p>
-          <p>For central cloud database, multi-user login and real admin approval across devices, a server/serverless backend will be required later.</p>
+          <p>GauMitra supports registration, operational forms, search, edit, delete, CSV export and print-ready management reports.</p>
+          <p>Designed to simplify daily Gaushala operations with organized records, faster reporting and transparent management.</p>
         </div>
       </div>
     </section>
@@ -85,9 +84,9 @@
     <section class="section features-section" id="features">
       <div class="container">
         <div class="section-head centered">
-          <p class="section-kicker">23 Working Modules</p>
-          <h2>Click a module to open its working form</h2>
-          <p>Each module has a real input form and saves data in this browser.</p>
+          <p class="section-kicker">Our Platform Modules</p>
+          <h2></h2>
+          <p></p>
         </div>
         <div class="features-grid" id="featuresGrid"></div>
       </div>
@@ -96,9 +95,9 @@
     <section class="section app-section" id="registration">
       <div class="container">
         <div class="section-head">
-          <p class="section-kicker">Working Registration</p>
+          <p class="section-kicker">Digital Registration</p>
           <h2 id="activeModuleTitle">Gaushala Registration</h2>
-          <p id="activeModuleDesc">Fill this form and save a registration record in this browser.</p>
+          <p id="activeModuleDesc">Fill this form to create and manage a Gaushala registration record.</p>
         </div>
 
         <div class="app-layout">
@@ -121,9 +120,9 @@
     <section class="section records-section" id="records">
       <div class="container">
         <div class="section-head">
-          <p class="section-kicker">Saved Records</p>
-          <h2>View, search, edit, delete, export and print records</h2>
-          <p>Records are saved in browser local storage. Export CSV regularly for backup.</p>
+          <p class="section-kicker">Admin Records Panel</p>
+          <h2></h2>
+          <p>Manage and review Admin Records Panel with search, export and print-ready reports.</p>
         </div>
 
         <div class="record-tools">
@@ -148,7 +147,7 @@
       <div class="container">
         <div class="section-head centered">
           <p class="section-kicker">Reports</p>
-          <h2>Instant browser reports</h2>
+          <h2>Instant Operational Reports</h2>
           <p>Auto counts and latest records from each module.</p>
         </div>
         <div class="report-grid" id="reportGrid"></div>
@@ -184,19 +183,15 @@
       <div class="container contact-grid">
         <div>
           <p class="section-kicker">Contact Us</p>
-          <h2>Request a demo or connect with NKC Edu Trust.</h2>
+          <h2>Contact GauMitra Team</h2>
           <div class="contact-links">
-            <a href="tel:+918369912434">📞 +91 8369912434</a>
-            <a href="mailto:info@nkctrust.org">✉ info@nkctrust.org</a>
-            <a href="https://gaumitra.world">🌐 gaumitra.world</a>
+            <a href="tel:+918369912434">Call: +91 8369912434</a>
+            <a href="mailto:info@nkctrust.org">Email: info@nkctrust.org</a>
+            <a href="https://gaumitra.world">Website: gaumitra.world</a>
           </div>
         </div>
         <div class="address-card">
-          <h3>Office Addresses</h3>
-          <h4>Registered Office</h4>
-          <p>Plot No. C-1/203, Satyamev Chhavani Icon, Behind Balaji Agora Mall, Tapovan Circle, Sughad, Gandhinagar - 382424, Gujarat, India</p>
-          <h4>Head Office</h4>
-          <p>Plot No. 398, Sector - 8, B, Gandhinagar, Gujarat - 382007, India</p>
+          <h3>Office Address</h3><p>Plot No. C-1/203, Satyamev Chhavani Icon, Behind Balaji Agora Mall, Tapovan Circle, Sughad, Gandhinagar - 382424, Gujarat, India</p>
         </div>
       </div>
     </section>
@@ -211,8 +206,8 @@
           <span>Powered by NKC Edu Trust</span>
         </div>
       </div>
-      <p>Working no-server platform. Data is stored in this browser. Export CSV for backup.</p>
-      <a class="back-top" href="#top">Back to top ↑</a>
+      <p>Smart Digital Platform for Gaushala Management, Cow Care and Public Transparency.</p>
+      <a class="back-top" href="#top">Back to top</a>
     </div>
   </footer>
 
@@ -220,3 +215,22 @@
   <script src="script.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
