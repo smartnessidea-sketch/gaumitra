@@ -62,6 +62,7 @@ function renderFeatureCards(){
   $("featuresGrid").innerHTML = modules.map((m,i)=>`
     <button class="feature-card" type="button" data-open-module="${m.id}">
       <span class="num">${String(i+1).padStart(2,"0")}</span>
+      ${gmFeatureIcon(i)}
       <strong>${gmT(m.name)}</strong>
       
       
@@ -254,4 +255,6 @@ Object.assign(gmLangText.hi,{'Documents & Compliance':'दस्तावेज�
 
 
 
+
+function gmFeatureIcon(i){var a=['&#128221;','&#128004;','&#9877;','&#128046;','&#129371;','&#127981;','&#128657;','&#128591;','&#128176;','&#128101;','&#128196;','&#128202;','&#128274;','&#127793;','&#129504;','&#9881;','&#128722;','&#128293;','&#129309;','&#128247;','&#128241;','&#128717;','&#127807;'];return '<span class=feature-visual aria-hidden=true><span class=feature-emoji>'+(a[i]||'&#128004;')+'</span></span>';}
 
