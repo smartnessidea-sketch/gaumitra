@@ -33,6 +33,9 @@ function $(id){return document.getElementById(id)}
 function getModule(id){return modules.find(m=>m.id===id) || modules[0]}
 function loadRecords(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []}catch(e){return []}}
 function saveRecords(records){localStorage.setItem(STORAGE_KEY, JSON.stringify(records))}
+function createRegistrationNumber(records){ const year = new Date().getFullYear(); const nums = records.filter(r=>r.moduleId===`gaushala-registration`).map(r=>String((r.data && r.data[slug(`Registration Number`)]) || ``)).map(v=>Number((v.match(/GM-\d{4}-(\d+)/)||[])[1] || 0)); return `GM-`+year+`-`+String(Math.max(0,...nums)+1).padStart(6,`0`); }
+function createQrText(record){ const d = record.data || {}; return ['GauMitra Registration','Reg No: ' + (d[slug('Registration Number')] || ''),'Gaushala: ' + (d[slug('Gaushala Name')] || ''),'Mobile: ' + (d[slug('Mobile Number')] || ''),'City: ' + (d[slug('City')] || '')].join('\n'); }
+function createQrUrl(text){ return 'https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=' + encodeURIComponent(text); }
 function toast(msg){const t=$("toast"); t.textContent=msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),2300)}
 
 function init(){
@@ -114,12 +117,15 @@ function handleSubmit(e){
   const data = {};
   m.fields.forEach(f=>{data[slug(f)] = (fd.get(slug(f)) || "").toString().trim()});
   const records = loadRecords();
+  if(!editRecordId && activeModuleId=='gaushala-registration' && !data[slug('Registration Number')]){data[slug('Registration Number')]=createRegistrationNumber(records);}
   if(editRecordId){
     const idx = records.findIndex(r=>r.id===editRecordId);
     if(idx>=0){records[idx].data=data; records[idx].updatedAt=new Date().toISOString();}
     toast("Record updated successfully");
   } else {
-    records.unshift({id: cryptoId(), moduleId: activeModuleId, moduleName: m.name, data, createdAt:new Date().toISOString(), updatedAt:null});
+    const newRecord = {id: cryptoId(), moduleId: activeModuleId, moduleName: m.name, data, createdAt:new Date().toISOString(), updatedAt:null};
+    if(activeModuleId=='gaushala-registration'){newRecord.qrText=createQrText(newRecord);newRecord.qrUrl=createQrUrl(newRecord.qrText);}
+    records.unshift(newRecord);
     toast("Record saved successfully");
   }
   saveRecords(records);
@@ -142,13 +148,15 @@ function renderRecords(){
   const m = getModule(activeModuleId);
   const records = currentRecords();
   const visibleFields = m.fields.slice(0,5);
-  $("recordsHead").innerHTML = `<tr><th>Date</th>${visibleFields.map(f=>`<th>${f}</th>`).join("")}<th>Actions</th></tr>`;
+  const hasQr = activeModuleId==="gaushala-registration";
+  $("recordsHead").innerHTML = `<tr><th>Date</th>${visibleFields.map(f=>`<th>${f}</th>`).join("")}${hasQr?"<th>QR Code</th>":""}<th>Actions</th></tr>`;
   $("recordsBody").innerHTML = records.length ? records.map(r=>`
     <tr>
       <td>${formatDate(r.createdAt)}</td>
       ${visibleFields.map(f=>`<td>${escapeHtml(r.data[slug(f)] || "-")}</td>`).join("")}
+      ${hasQr?`<td>${r.qrUrl ? `<img src="${escapeAttr(r.qrUrl)}" alt="QR Code" style="width:70px;height:70px">` : "-"}</td>`:""}
       <td><div class="row-actions"><button class="mini-btn mini-edit" onclick="editRecord('${r.id}')">Edit</button><button class="mini-btn mini-delete" onclick="deleteRecord('${r.id}')">Delete</button></div></td>
-    </tr>`).join("") : `<tr><td colspan="${visibleFields.length+2}">No records found. Add a record from the form above.</td></tr>`;
+    </tr>`).join("") : `<tr><td colspan="${visibleFields.length+2+(hasQr?1:0)}">No records found. Add a record from the form above.</td></tr>`;
   renderSummary();
 }
 
@@ -257,4 +265,10 @@ Object.assign(gmLangText.hi,{'Documents & Compliance':'दस्तावेज�
 
 
 function gmFeatureIcon(i){var a=['&#128221;','&#128004;','&#9877;','&#128046;','&#129371;','&#127981;','&#128657;','&#128591;','&#128176;','&#128101;','&#128196;','&#128202;','&#128274;','&#127793;','&#129504;','&#9881;','&#128722;','&#128293;','&#129309;','&#128247;','&#128241;','&#128717;','&#127807;'];return '<span class=feature-visual aria-hidden=true><span class=feature-emoji>'+(a[i]||'&#128004;')+'</span></span>';}
+
+
+
+
+
+
 
