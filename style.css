@@ -14,3 +14,4 @@
 .share-section{background:linear-gradient(135deg,#f4fff6,#fff7e8)}.share-card{display:grid;grid-template-columns:1.4fr .6fr;gap:26px;align-items:center;background:#fff;border:1px solid #dcefe0;border-radius:30px;padding:34px;box-shadow:0 22px 55px rgba(19,115,62,.12)}.share-card h2{margin:6px 0 12px}.share-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}@media(max-width:760px){.share-card{grid-template-columns:1fr;padding:24px}.share-actions{justify-content:flex-start}}
 .footer-brand div span,.brand div span{display:block!important}.footer-brand .association-line,.brand .association-line{margin-top:4px!important;color:#f0a23a!important;font-weight:900!important;font-size:13px!important;letter-spacing:.2px!important;text-shadow:0 1px 8px rgba(240,162,58,.25)}
 .btn.danger{display:none!important;}
+.mini-delete{display:none!important;}
